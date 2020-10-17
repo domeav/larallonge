@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div id="app">
+  <audio id="audio" v-if="sound" controls
+         style="display: none;"
+         :src="'assets/computed/' + sound + '.m4a'"></audio>
+
+  <p>
+    <div v-if="isdance">
+      Cette performance a été réalisée par [[film_credits]]
+    </div>
+    <div v-else>
+      Ce film a été réalisé par [[film_credits]]
+    </div>
+  </p>
+  <video id="video" controls>
+    <source :src="'assets/computed/' + key + '.mp4'" type="video/mp4"/>
+    <source :src="'assets/computed/' + key + '.webm'" type="video/webm"/>
+  </video>
+  <p>
+    <div v-if="sound">
+      sur une musique improvisée par <a :href="'listen.html?id=' + sound_id">[[sound_credits]]</a>
+    </div>
+    <div v-else>
+      sans musique, parce qu'il s'agit de la toute première contribution !
+    </div>
+  </p>
+  <p>
+    <div v-if="continuations.length > 0">
+      Cette contribution a inspiré :
+      <ul>
+      <li v-for="child_info in continuations">
+        <a :href="'listen.html?id=' + child_info[0]">[[ child_info[1] ]]</a>
+      </li>
+      </ul>
+    </div>
+  </p>
+  
+</div>
+
+<script type="application/javascript">
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const node_type = urlParams.get('node_type');
+  const id = urlParams.get('id');
+  const key = make_key(node_type, id);
+  var sound = '';
+  var sound_credits = '';
+  var sound_id = ''
+  const infos = contributions[node_type][id];
+  if ('parent' in infos){
+      sound_id = infos['parent']['id'];
+      sound = make_key(infos['parent']['node_type'], sound_id);
+      sound_credits = credits(contributions[infos['parent']['node_type']][sound_id]['participations'])
+  }
+  var continuations = [];
+  if (key in children){
+      children[key].forEach(child => {
+          const child_type = child[0];
+          const child_id = child[1];
+          continuations.push([child_id, credits(contributions[child_type][child_id]["participations"])]);
+      });
+  }
+  var app = new Vue({
+      el: '#app',
+      data: {
+          isdance: node_type == 'dance',
+          key: key,
+          sound: sound,
+          sound_id: sound_id,
+          film_credits: credits(infos['participations']),
+          sound_credits: sound_credits,
+          continuations : continuations
+      },
+      delimiters: ['[[',']]']
+  })
+
+  var videowidget = document.getElementById('video');
+  var audiowidget = document.getElementById('audio');
+  if (audiowidget){      
+      videowidget.onplay  = function() {
+          audiowidget.currentTime = videowidget.currentTime;
+          audiowidget.play();
+      }
+      videowidget.onpause  = function() { audiowidget.pause();  }      
+  }
+  videowidget.play();
+</script>
+{% endblock %}

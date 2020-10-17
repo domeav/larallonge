@@ -1,0 +1,17 @@
+body { max-width: 780px; }
+video, audio {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+header {
+    background: white url('background.jpg') repeat center;
+}
+
+menu a {
+  background-color: #ffec00;
+  color: black;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  text-transform: uppercase;
+}

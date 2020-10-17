@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div id="app">
+  <p>
+    <div>
+      Cette musique a été improvisée par [[ sound_credits ]]
+    </div>
+  </p>
+  <audio id="audio" controls
+         style=" width: 640px;"
+         :src="'assets/computed/' + key + '.m4a'"></audio>    
+  <p>
+    <div>
+      à partir de la vidéo suivante proposée par <a :href="'watch.html?node_type=' + parent_type + '&id=' + parent_id">[[ parent_credits ]]</a>
+    </div>
+  </p>
+  <video class="video">
+    <source :src="'assets/computed/' + parent_key + '.mp4'" type="video/mp4"/>
+    <source :src="'assets/computed/' + parent_key + '.webm'" type="video/webm"/>
+  </video>  
+  <div v-if="continuations.length > 0">
+    Cette musique a inspiré :
+    <div v-for="child_info in continuations">
+      <ul>
+        <li><a :href="'watch.html?node_type=' + child_info[0] + '&id=' + child_info[1]">[[ child_info[3] ]]</a></li>
+      </ul>
+      <video class="video">
+        <source :src="'assets/computed/' + child_info[2] + '.mp4'" type="video/mp4"/>
+        <source :src="'assets/computed/' + child_info[2] + '.webm'" type="video/webm"/>        
+      </video>
+    </div>
+  </div>
+</div>
+
+<script type="application/javascript">
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const node_type = 'music';
+  const id = urlParams.get('id');
+  const key = make_key(node_type, id);
+  const infos = contributions[node_type][id];
+  const parent_id = infos['parent']['id'];
+  const parent_type = infos['parent']['node_type'];
+  const parent_key = make_key(parent_type, parent_id);
+  const parent_credits = credits(contributions[parent_type][parent_id]['participations']);
+
+  var continuations = [];
+  if (key in children){
+      children[key].forEach(child => {
+          const child_type = child[0];
+          const child_id = child[1];
+          const infos = contributions[child_type][child_id];
+          continuations.push([child_type, child_id, make_key(child_type, child_id), credits(infos["participations"])]);
+      });
+  }
+  var app = new Vue({
+      el: '#app',
+      data: {
+          key: key,
+          sound_credits: credits(infos['participations']),
+          sound_id: id,
+          parent_credits: parent_credits,
+          parent_key: parent_key,
+          parent_id: parent_id,
+          parent_type: parent_type,
+          continuations : continuations
+      },
+      delimiters: ['[[',']]']
+  })
+
+  var audiowidget = document.getElementById('audio');
+  var videowidgets = document.getElementsByClassName('video');
+  
+  audiowidget.onplay = function() {
+      for (let vw of videowidgets){
+          vw.currentTime = audiowidget.currentTime;
+          vw.play();
+      }
+  }
+  audiowidget.onpause = function() {
+      for (let vw of videowidgets){
+          vw.pause();
+      }
+  }
+  
+  audiowidget.play();
+</script>
+{% endblock %}

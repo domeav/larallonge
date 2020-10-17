@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% for node in nodes %}
+<a href="watch.html?node_type={{ node['node_type'] }}&id={{ node['id'] }}">
+  <img src="assets/computed/{{ node['key'] }}.gif"/>
+</a>
+{% endfor %}
+
+{% endblock %}

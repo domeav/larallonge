@@ -1,0 +1,8 @@
+*~
+computed
+ncomputed22
+orig
+website-generated/*.html
+website-generated/*.js
+website-generated/*.json
+py-dist
