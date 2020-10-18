@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div id="app">
+  <p>
+    Je veux voir une contribution de
+    <select v-model="selected_vid" v-on:change="reset_player">
+      <option v-for="(people, vid) in vids" v-bind:value="vid">
+        [[ people ]]
+      </option>
+    </select>
+  </p>
+  <video controls>
+    <source :src="'assets/computed/' + selected_vid + '.mp4'" type="video/mp4"/>
+    <source :src="'assets/computed/' + selected_vid + '.webm'" type="video/webm"/>
+  </video>
+  <p>
+    sur une musique de
+    <select v-model="selected_sid" v-on:change="reset_player">
+      <option v-for="(people, sid) in sids" v-bind:value="sid">
+        [[ people ]]
+      </option>
+    </select>
+  </p>
+  <audio style="display: none;"
+         :src="'assets/computed/' + selected_sid + '.m4a'"></audio>
+  <p>
+    <a href="select.html">Sélection aléatoire</a>
+  </p>
+</div>
+<script type="application/javascript">
+
+  var vids = {};
+  var sids = {};
+  for (const node_type in contributions){
+      if (node_type == 'film' || node_type == 'dance'){
+          for (const id in contributions[node_type]){
+              vids[make_key(node_type, id)] = credits(contributions[node_type][id]['participations'])
+          }
+      }
+      else if (node_type == 'music'){
+          for (const id in contributions[node_type]){
+              sids[make_key(node_type, id)] = credits(contributions[node_type][id]['participations'])
+          }
+      }
+  }
+
+  const vidkeys = Object.keys(vids);
+  const sidkeys = Object.keys(sids);
+
+  function reset_player(){
+      var videowidget = document.getElementsByTagName('video')[0];
+      var audiowidget = document.getElementsByTagName('audio')[0];
+      audiowidget.pause();
+      videowidget.onplay  = function() {
+          audiowidget.currentTime = videowidget.currentTime;
+          audiowidget.play();
+      }
+      videowidget.onpause  = function() { audiowidget.pause();  };
+      videowidget.load();
+  }
+  
+  var app = new Vue({
+      el: '#app',
+      data: {
+          vids: vids,
+          sids: sids,
+          selected_vid: vidkeys[vidkeys.length * Math.random() << 0],
+          selected_sid: sidkeys[sidkeys.length * Math.random() << 0]
+      },
+      methods: {
+          reset_player: reset_player
+      },
+      delimiters: ['[[',']]']
+  });
+  
+  reset_player();
+</script>
+{% endblock %}

@@ -42,16 +42,13 @@ with open(os.path.join(OUTPUT, f"larallonge.js"), 'w') as f:
     f.write(template.render(contributions=json.dumps(contributions, ensure_ascii=False),
                             children=json.dumps(children, ensure_ascii=False)))
 print('JS script generated')
-    
-template = env.get_template('watch.html')
-with open(os.path.join(OUTPUT, f"watch.html"), 'w') as f:
-    f.write(template.render())
-print('Watch page generated')
 
-template = env.get_template('listen.html')
-with open(os.path.join(OUTPUT, f"listen.html"), 'w') as f:
-    f.write(template.render())
-print('Listen page generated')
+
+for tmpl in ('watch', 'listen', 'select'):
+    template = env.get_template(f'{tmpl}.html')
+    with open(os.path.join(OUTPUT, f"{tmpl}.html"), 'w') as f:
+        f.write(template.render())
+    print(f'{tmpl} page generated')
     
 template = env.get_template('larallonge.html')
 nodes = []

@@ -9,9 +9,9 @@ header {
 }
 
 menu a {
-  background-color: #ffec00;
-  color: black;
-  padding: 0.5em 1em;
-  text-decoration: none;
-  text-transform: uppercase;
+    background-color: #ffec00;
+    color: black;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    text-transform: uppercase;
 }
