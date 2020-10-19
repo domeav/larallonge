@@ -35,7 +35,9 @@
   for (const node_type in contributions){
       if (node_type == 'film' || node_type == 'dance'){
           for (const id in contributions[node_type]){
-              vids[make_key(node_type, id)] = credits(contributions[node_type][id]['participations'])
+              if (contributions[node_type][id]['published']){
+                  vids[make_key(node_type, id)] = credits(contributions[node_type][id]['participations'])
+              }
           }
       }
       else if (node_type == 'music'){
