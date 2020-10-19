@@ -15,7 +15,7 @@
       à partir de la vidéo suivante proposée par <a :href="'watch.html?node_type=' + parent_type + '&id=' + parent_id">[[ parent_credits ]]</a>
     </div>
   </p>
-  <video class="video">
+  <video class="video" id="parentvid">
     <source :src="'assets/computed/' + parent_key + '.mp4'" type="video/mp4"/>
     <source :src="'assets/computed/' + parent_key + '.webm'" type="video/webm"/>
   </video>  
@@ -25,7 +25,10 @@
       <ul>
         <li><a :href="'watch.html?node_type=' + child_info[0] + '&id=' + child_info[1]">[[ child_info[3] ]]</a></li>
       </ul>
-      <video class="video">
+      <p v-if="!child_info[4]">
+        <b>Le réalisateur nous a demandé de retirer son film, toutes nos excuses pour ce trou dans la Rallonge !</b>
+      </p>
+      <video class="video" id="childvid" v-if="child_info[4]">
         <source :src="'assets/computed/' + child_info[2] + '.mp4'" type="video/mp4"/>
         <source :src="'assets/computed/' + child_info[2] + '.webm'" type="video/webm"/>        
       </video>
@@ -44,14 +47,19 @@
   const parent_type = infos['parent']['node_type'];
   const parent_key = make_key(parent_type, parent_id);
   const parent_credits = credits(contributions[parent_type][parent_id]['participations']);
-
+  if (contributions[parent_type][parent_id]['published'] == false){
+      var parent = document.createElement('p');
+      parent.innerHTML = "<b>Le réalisateur nous a demandé de retirer son film, toutes nos excuses pour ce trou dans la Rallonge !</b>";
+      document.getElementById('parentvid').replaceWith(parent);
+  }
+  
   var continuations = [];
   if (key in children){
       children[key].forEach(child => {
           const child_type = child[0];
           const child_id = child[1];
           const infos = contributions[child_type][child_id];
-          continuations.push([child_type, child_id, make_key(child_type, child_id), credits(infos["participations"])]);
+          continuations.push([child_type, child_id, make_key(child_type, child_id), credits(infos["participations"]), infos['published']]);
       });
   }
   var app = new Vue({

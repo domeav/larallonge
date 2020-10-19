@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="people">
+  {% for p in people %}
+  <div class="contributor">
+    <h4>{{ p.name }} ({{ p.city }})</h4>
+    {% if 'pic' in p %}
+    <img src="assets/computed/pics/{{ p.pic }}"/>
+    {% endif %}    
+    <ul>
+      {% for contrib in people_contribs[p.name] %}
+      <li>
+        {% if contrib.link %}<a href="{{ contrib.link }}">{% endif %}
+          {{ contrib.tree }}/{{ contrib.node_type }}{% if contrib.id != '0' %}/{{ contrib.id }}{% endif %}
+          {% if contrib.details %} : {{ contrib.details | lower }}{% endif %}
+        {% if contrib.link %}</a>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    <p>
+      {% markdown %}{{ p.about }}{% endmarkdown %}
+    </p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

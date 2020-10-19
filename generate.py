@@ -164,9 +164,9 @@ class Thread(object):
         self.generate_oggs()
         self.generate_m4as()
         self.generate_mp4s()
-        self.generate_pair_mp4s()
+        #self.generate_pair_mp4s()
         self.generate_webms()
-        self.generate_pair_webms()
+        #self.generate_pair_webms()
         self.generate_gifs()
         
 

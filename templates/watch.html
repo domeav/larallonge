@@ -49,6 +49,11 @@
   var sound_credits = '';
   var sound_id = ''
   const infos = contributions[node_type][id];
+  if (infos['published'] == false){
+      var parent = document.createElement('p');
+      parent.innerHTML = "<b>Le réalisateur nous a demandé de retirer son film, toutes nos excuses pour ce trou dans la Rallonge !</b>";
+      document.getElementById('video').replaceWith(parent);
+  }
   if ('parent' in infos){
       sound_id = infos['parent']['id'];
       sound = make_key(infos['parent']['node_type'], sound_id);

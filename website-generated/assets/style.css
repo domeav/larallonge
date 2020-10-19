@@ -15,3 +15,23 @@ menu a {
     text-decoration: none;
     text-transform: uppercase;
 }
+
+.people {
+    column-count: 1;
+    column-gap: 0;
+}
+
+@media screen and (min-width: 580px) {
+    .people {
+        column-count: 2;
+        column-gap: 1em;
+    }
+}
+
+.contributor {
+    border-left: 1mm ridge #ffec00;
+    display: inline-block;
+    margin: 0 0 1em;
+    padding-left: 0.5em;
+    width: 100%;
+}
