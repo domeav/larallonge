@@ -8,7 +8,7 @@ import os
 import shutil
 from collections import defaultdict
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from jinja_markdown import MarkdownExtension
+from jinja2_markdown import MarkdownExtension
 from datetime import datetime
 from urllib.parse import quote
 

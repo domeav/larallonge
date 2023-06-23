@@ -916,7 +916,27 @@
                 "node_type": "film",
                 "id": "24"
             }
+        },
+	"28": {
+            "date": "2023-05-01",
+            "tree": "la rallonge",
+            "published": true,
+            "participations": [
+                {
+                    "person": "Sylvain Rey",
+                    "details": "Piano"
+                },
+                {
+                    "person": "Simon Charrier",
+                    "details": "Clarinette basse"
+                }
+            ],
+            "parent": {
+                "node_type": "film",
+                "id": "25"
+            }
         }
+
     },
     "artistic board": {
         "0": {

@@ -2,7 +2,7 @@
 {% block content %}
 
 <div id="app">
-  <audio id="audio" v-if="sound"
+  <audio class="audio" id="audio" v-if="sound"
          style="display: none;"
          :src="'assets/computed/' + sound + '.m4a'"></audio>
 
@@ -14,7 +14,7 @@
       Ce film a été réalisé par [[film_credits]]
     </div>
   </p>
-  <video id="video" controls>
+  <video class="video" id="video" controls>
     <source :src="'assets/computed/' + key + '.mp4'" type="video/mp4"/>
     <source :src="'assets/computed/' + key + '.webm'" type="video/webm"/>
   </video>

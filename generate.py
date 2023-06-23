@@ -42,7 +42,7 @@ LA_RALLONGE = ['film_0001', 'music_0001',
                'film_0022', 'music_0025',
                'film_0023', 'music_0026',
                'film_0024', 'music_0027',
-               'film_0025']
+               'film_0025', 'music_0028']
 
 LA_RALLONGE_DANSEE = ['music_0010', 'dance_0001',
                       'music_0021', 'dance_0002',
@@ -52,6 +52,7 @@ LA_RALLONGE_DANSEE = ['music_0010', 'dance_0001',
 class Thread(object):
     todo = {
         'gif': [],
+        'preview': [],
         'mp4': [],
         'webm': [],
         'ogg': [],
@@ -67,6 +68,8 @@ class Thread(object):
                 self.todo['m4a'].append('{}.{}'.format(node, 'm4a'))
                 continue
             self.todo['gif'].append('{}.{}'.format(node, 'gif'))
+            self.todo['preview'].append(f'{node}_preview.mp4')
+            self.todo['preview'].append(f'{node}_preview.webm')
             self.todo['mp4'].append('{}.{}'.format(node, 'mp4'))
             self.todo['webm'].append('{}.{}'.format(node, 'webm'))
             if previous_vid:
@@ -95,6 +98,14 @@ class Thread(object):
             subprocess.check_call(
                 'convert -delay {} -loop 0 computed/{}-*.png computed/{}.gif'.format(random.randint(60, 100), node, node), 
                 shell=True)
+            print("{} generated".format(outfile))
+        self.todo['gif'] = []
+    def generate_previews(self):
+        print('Generating previews')
+        for node in self.todo['preview']:
+            node, ext = node.split('_preview.')
+            outfile = f'computed/{node}_preview.{ext}'
+            subprocess.check_call(['ffmpeg', '-i', f'computed/{node}.gif', outfile])
             print("{} generated".format(outfile))
         self.todo['gif'] = []
     def generate_mp4s(self):
@@ -168,6 +179,7 @@ class Thread(object):
         self.generate_webms()
         #self.generate_pair_webms()
         self.generate_gifs()
+        self.generate_previews()
         
 
 

@@ -10,7 +10,7 @@
       </option>
     </select>
   </p>
-  <video controls>
+  <video class="video" controls>
     <source :src="'assets/computed/' + selected_vid + '.mp4'" type="video/mp4"/>
     <source :src="'assets/computed/' + selected_vid + '.webm'" type="video/webm"/>
   </video>
@@ -22,7 +22,7 @@
       </option>
     </select>
   </p>
-  <audio style="display: none;"
+  <audio class="audio" style="display: none;"
          :src="'assets/computed/' + selected_sid + '.m4a'"></audio>
   <p>
     <a href="select.html">Sélection aléatoire</a>
