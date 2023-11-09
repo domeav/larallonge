@@ -36,9 +36,9 @@
     },
     {
         "name": "Dominique Eav",
-        "city": "Toulouse",
+        "city": "Lorient",
         "country": "France",
-        "about": "\n​Dominique Eav passe sa vie à chercher le spontané dans l'écriture et la structure dans l'improvisation, de l'Ircam à la Fraction Grossière en passant par les Mekong Pirates et Lo Falour Capèl. Co-fondateur de France Impro et membre des Sonofages, il est libre informaticien et anarcho-trompettiste.\n    ",
+        "about": "\nDominique Eav passe sa vie à chercher le spontané dans l'écriture et la structure dans l'improvisation, de l'Ircam à la Fraction Grossière en passant par les Mekong Pirates et Lo Falour Capèl. Co-fondateur de France Impro et membre des Sonofages, il est libre informaticien et anarcho-trompettiste.\n\nEn 2020 il met le cap vers Lorient ou il devient président de l'association Musik Europa Breizh, qui propose de la musique baroque et de la musique barrée à travers les projets AIE (Atelier Impro Electro) et SoundSail (musique environnementale).",
         "pic": "dom.jpg"
     },
     {
@@ -611,5 +611,11 @@
 	"country": "France",
 	"about": "Après des études de musiques classiques au Conservatoire de Toulouse, Simon Charrier oriente son travail vers les musiques Improvisée, auprès de musiciens tels que Denis Badault, David Krakauer, Yom, Julien Soro (Big Four, ONJ).\n\nClarinettiste aux multiples facettes, il ne s'enferme dans aucune tradition et ne se limite a aucune esthétique musicale. Du klezmer avec « KaZBaK » aux musiques classiques, en passant par la musique au service du texte avec le conteur Boubacar N'diaye et le jazz des steppes avec «Dadef Quartet », Simon Charrier n'a de cesse d'apprendre, de s'enrichir, d'explorer. Il signe ici avec ARAM, un nouveau terrain d'exploration.\n\nSon travail s'axe autour des superpositions rythmiques et des musiques de transes, avec une recherche sur les textures sonores, le mélange des timbres, comme si le son était une matière que l'on pouvait tailler, creuser, polir.",
 	"pic": "simon_charrier.jpg"
+    },
+    {
+	"name": "Bonella Holloway",
+	"city": "Toulouse",
+	"about": "Diplômé.e de l'IsdaT en 2014, Bonella Holloway vit principalement à Toulouse et part irrégulièrement tourner des vidéos, faire des résidences officieuses et officielles, et écrire des poèmes ailleurs que dans son appartement. L'an passé son installation sonore \"Je négocie avec le réel\" a été exposé pour une exposition du Frac Occitanie au Château de Lacaze, et son installation de sculptures \"Forêt\" a été exposé à \"Déplacer\", proposition collective à Motor, Toulouse. Cette dernière année iel était en résidence à Lieu Commun Artist Run Space, avec qui iel est parti exposer des t-shirts à la Fabrique Pola à Bordeaux, et qui ont invité son groupe Générique Mardi à jouer au Théâtre Garonne pour le Nouveau Printemps à Toulouse. Sa collaboration live musique / vidéo avec Danse Musique Rhône-Alpes \"Apophénies\" jouera en décembre à Stéréolux à Nantes. Jusqu'en 2025 iel travaillera sur une nouvelle installation audio-visuelle traitant de logiques de domination, produite par la Région Occitanie.\n\nIel travaille la vidéo, le texte et la performance pour questionner les structures normées de nos systèmes linguistiques, comportementaux, psychologiques, sexuels et genrés. Ses images, documentaires ou mises en scène dé-hiérarchisent les valeurs différentielles entre une chose et une autre, à analyser les fonctionnements des détails du quotidien brut, à rire de son absurdité, à s'émerveiller de sa beauté. Le doute y les accidents y ont toute leur place, bancalement cadrés par le rythme et la répétition.",
+	"pic": "B4B8C641-F36F-4872-9218-2370FAF9F18B.jpeg"
     }
 ]

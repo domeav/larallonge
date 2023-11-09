@@ -403,6 +403,20 @@
                 "node_type": "music",
                 "id": "27"
             }
+        },
+	"26": {
+            "date": "2023-11-01",
+            "tree": "la rallonge",
+            "published": true,
+            "participations": [
+                {
+                    "person": "Bonella Holloway"
+                }
+            ],
+            "parent": {
+                "node_type": "music",
+                "id": "28"
+            }
         }
     },
     "music": {
@@ -936,7 +950,6 @@
                 "id": "25"
             }
         }
-
     },
     "artistic board": {
         "0": {
