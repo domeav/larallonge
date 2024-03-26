@@ -43,7 +43,7 @@ LA_RALLONGE = ['film_0001', 'music_0001',
                'film_0023', 'music_0026',
                'film_0024', 'music_0027',
                'film_0025', 'music_0028',
-               'film_0026']
+               'film_0026', 'music_0029']
 
 LA_RALLONGE_DANSEE = ['music_0010', 'dance_0001',
                       'music_0021', 'dance_0002',

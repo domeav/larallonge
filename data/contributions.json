@@ -949,6 +949,25 @@
                 "node_type": "film",
                 "id": "25"
             }
+        },
+	"29": {
+            "date": "2024-02-22",
+            "tree": "la rallonge",
+            "published": true,
+            "participations": [
+                {
+                    "person": "Will Zégal",
+                    "details": "Machines, flûte"
+                },
+                {
+                    "person": "Nicolas Le Thuaut",
+                    "details": "Machines"
+                }
+            ],
+            "parent": {
+                "node_type": "film",
+                "id": "26"
+            }
         }
     },
     "artistic board": {
